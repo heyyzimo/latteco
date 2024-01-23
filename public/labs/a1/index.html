@@ -3,6 +3,18 @@
         <title>lab 1</title>
     </head>
     <body>
+        <h1>Welcome to Web Development!</h1>
+        <ul>
+          <li><a href="/labs/a1/index.html">Assignment 1</a></li>
+          <li><a href="/labs/a2/index.html">Assignment 2</a></li>
+          <li><a href="/labs/a3/index.html">Assignment 3</a></li>
+          <li><a href="/Kanbas/Courses/Home/screen.html">Kanbas</a></li>
+        </ul>
+        <!--
+          <noscript>You need to enable JavaScript to run this app.</noscript>
+          <div id="root"></div>
+        -->
+    
         <h1>Assignement1</h1>
         <h2>Forms</h2>
         <form>
@@ -57,8 +69,10 @@
         <table border="1" width="100">
             <thead>
                 <tr>
-                    <th>Column1</th>
-                    <th>Column2</th>
+                    <th>Quiz</th>
+                    <th>Topic</th>
+                    <th>Date</th>
+                    <th>Grade</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,13 +87,137 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td>Footer 1</td>
+                    <td colspan="3">Footer 1</td>
                     <td>Footer 2</td>
                 </tr>
             </tfoot>
 
         </table>
         <h2>Image Tag</h2>
+        Loading an image from the internet:<br/>
 
-    <body/>
+<img width="400px"
+    src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg"/>
+<br/>
+
+Loading a local image:<br/>
+
+<img src="teslabot.jpeg" height="200px"/>
+<br />
+<input  type="text"
+       placeholder="hint"
+       title="tooltip"
+       value="COMEDY"/>
+
+       <h2>Text fields</h2>
+<form id="text-fields">
+   <label for="text-fields-username">Username:</label>
+   <input id="text-fields-username" placeholder="jdoe"/><br/>
+   <label for="text-fields-password">Password:</label>
+   <input type="password" id="text-fields-password"
+          value="123@#$asd"/><br/>
+   <label for="text-fields-first-name">First name:</label>
+   <input type="text" id="text-fields-first-name"
+          title="John"/><br/>
+   <label for="text-fields-last-name">Last name:</label>
+   <input type="text" id="text-fields-last-name"
+          placeholder="Doe" value="Wonderland"/>
+<h2>Text boxes</h2>
+<form id="textarea">
+   <label>Biography:</label><br/>
+   <textarea cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+</form>
+<h3>Buttons</h3>
+<button type="button">Click me!</button>
+   <!-- copy rest of form elements here -->
+</form>
+<h2>File upload</h2>
+<input type="file"/>
+
+<h2>Radio buttons</h2>
+
+<label>Favorite movie genre:</label><br/>
+
+<input type="radio" value="COMEDY"
+      name="radio-genre" id="radio-comedy"/>
+<label for="radio-comedy">Comedy</label><br/>
+<input type="radio" value="DRAMA"
+      name="radio-genre" id="radio-drama"/>
+<label for="radio-drama">Drama</label><br/>
+<input type="radio" value="SCIFI"
+      name="radio-genre" id="radio-scifi" checked/>
+<label for="radio-scifi">Science Fiction</label><br/>
+<input type="radio" value="FANTASY"
+      name="radio-genre" id="radio-fantasy"/>
+<label for="radio-fantasy">Fantasy</label>
+
+<h2>Checkboxes</h2>
+<label>Favorite movie genre:</label>
+<br/>
+<input type="checkbox" value="COMEDY"
+      name="check-genre" id="chkbox-comedy" checked/>
+<label for="chekbox-comedy">Comedy</label>    <br/>
+
+<input type="checkbox" value="DRAMA"
+      name="check-genre" id="chkbox-drama"/>
+<label for="chkbox-drama">Drama</label>    <br/>
+
+<input type="checkbox" value="SCIFI"
+      name="check-genre" id="chkbox-scifi" checked/>
+<label for="chkbox-scifi">Science Fiction</label> <br/>
+
+<input type="checkbox" value="FANTASY"
+      name="check-genre" id="chkbox-fantasy"/>
+<label for="chkbox-fantasy">Fantasy</label>
+
+<h2>Dropdowns</h2>
+
+<h3>Select one</h3>
+<label for="select-one-genre"> Favorite movie genre: </label><br/>
+<select id="select-one-genre">
+   <option value="COMEDY">Comedy</option>
+   <option value="DRAMA">Drama</option>
+   <option selected value="SCIFI">
+       Science Fiction</option>
+   <option value="FANTASY">Fantasy</option>
+</select>
+
+<h3>Select many</h3>
+<label for="select-many-genre"> Favorite movie genres: </label><br/>
+<select id="select-many-genre" multiple>
+   <option selected value="COMEDY">Comedy</option>
+   <option value="DRAMA">Drama</option>
+   <option selected value="SCIFI">
+       Science Fiction</option>
+   <option value="FANTASY">Fantasy</option>
+</select>
+
+<h2>Other HTML field types</h2>
+<label for="text-fields-email"> Email: </label>
+<input type="email"
+      placeholder="jdoe@somewhere.com"
+      id="text-fields-email"/><br/>
+<label for="text-fields-salary-start"> Starting salary:
+</label>
+<input type="number"
+      id="text-fields-salary-start"
+      placeholder="1000"
+      value="100000"/><br/>
+<label for="text-fields-rating"> Rating: </label>
+<input type="range" id="text-fields-rating"
+      placeholder="Doe"
+      max="5"
+      value="4"/><br/>
+<label for="text-fields-dob"> Date of birth: </label>
+<input type="date"
+      id="text-fields-dob"
+      value="2000-01-21"/><br/>
+      <h2>Anchor tag</h2>
+
+      Please
+      <a href="https://www.lipsum.com">click here</a>
+      to get dummy text<br/>
+      
+      Checkout my <a href="other-page.html">other page</a>
+<body/>
 </html>

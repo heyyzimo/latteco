@@ -92,7 +92,7 @@
                   </div>
                 <div class="col-10 wd-grades "> <!--Grades-->
                     <div class="container">
-                        <div class="row">
+                        <div class="row"> <!--Import Export-->
                             <div class="col"></div>
                             <div class="col-auto ">
                                 <button class="btn btn-outline-secondary">
@@ -111,72 +111,101 @@
                                   </button>
                             </div>
                         </div>
-                        <div class="row filter-bar">
-                            <!-- Student Search -->
-                            <div class="row">
-                                <!-- Student Names Search Bar -->
-                                <div class="col-md-6">
-                                  <div class="input-group mb-3">
-                                    <label>Search Students</label>
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                    </div>
-                                    <input type="text" class="form-select" placeholder="Search Students" aria-label="Search Students">
-                                  </div>
+                        <div class="row mt-3">
+                            <div class="col-6"><!--Student Search-->
+                                <div class="wd-search-label">
+                                    <label>Student Names</label>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="input-group mb-3">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                      </div>
-                                      <input type="text" class="form-select" placeholder="Search Assignments" aria-label="Search Assignments">
+                                <div>
+                                    <!-- Input group with search input and select dropdown -->
+                                    <div class="input-group mb-3 search-select-input">
+                                        <label class="form-label"></label>
+                                      <input type="text" class="form-select wd-select-with-icon" placeholder="Search Students" aria-label="Search term">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6"> <!--Assignment Search-->
+                                <div class="wd-search-label">
+                                    <label>Assignment Names</label>
+                                </div>
+                                <div>
+                                    <!-- Input group with search input and select dropdown -->
+                                    <div class="input-group mb-3 search-select-input">
+                                        <label class="form-label"></label>
+                                      <input type="text" class="form-select wd-select-with-icon" placeholder="Search Assignments" aria-label="Search term">
                                       
                                     </div>
-                                  </div>
+                                </div>
                             </div>
-                          
+
+                        </div>
+                        <div class="row filter-bar">
                           <div class="filter-button">
                             <button class="btn btn-outline-secondary"><i class="fa fa-filter"></i> Apply Filters</button>
                           </div>
-                          <br /> <br />
-                          <div class="container">
-                            <div class="table-responsive">
-                              <table class="table table-bordered">
-                                <thead>
-                                  <tr>
-                                    <th>Student Names</th>
-                                    <th>A1 SETUP</th>
-                                    <th>A2 HTML</th>
-                                    <th>A3 CSS</th>
-                                    <th>A4 BOOTSTRAP</th>
-                                    <!-- Add more assignment columns as needed -->
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>Doxa Asibey</td>
+                          </div> 
+                        <div class="row container"> <!--Grades Table-->
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                <th>Student Names</th>
+                                <th>A1 SETUP</th>
+                                <th>A2 HTML</th>
+                                <th>A3 CSS</th>
+                                <th>A4 BOOTSTRAP</th>
+                                <!-- Add more assignment columns as needed -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>Doxa Asibey</td>
+                                <td>100%</td>
+                                <td>100%</td>
+                                <td>89.59%</td>
+                                <td>98.65%</td>
+                                <!-- Add more scores as needed -->
+                                </tr>
+                                <!-- Repeat for each student -->
+                                <tr>
+                                <td>Thuy Tien Bui</td>
+                                <td>100%</td>
+                                <td>100%</td>
+                                <td>
+                                    <input type="text" class="input-score" value="91.5%">
+                                </td>
+                                <td>100%</td>
+                                <!-- Add more scores as needed -->
+                                </tr>
+                                <tr>
+                                    <td>Latte Latte</td>
                                     <td>100%</td>
                                     <td>100%</td>
-                                    <td>89.59%</td>
+                                    <td>89.00%</td>
                                     <td>98.65%</td>
                                     <!-- Add more scores as needed -->
-                                  </tr>
-                                  <!-- Repeat for each student -->
-                                  <tr>
-                                    <td>Thuy Tien Bui</td>
+                                </tr>
+                                <tr>
+                                    <td>Mochi Mochi</td>
                                     <td>100%</td>
                                     <td>100%</td>
-                                    <td>
-                                      <input type="text" class="input-score" value="91.5%">
-                                    </td>
-                                    <td>100%</td>
+                                    <td>89.00%</td>
+                                    <td>99.00%</td>
                                     <!-- Add more scores as needed -->
-                                  </tr>
-                                  <!-- Repeat for other students -->
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
+                                </tr>
+                                <tr>
+                                    <td>Yuanbao</td>
+                                    <td>100%</td>
+                                    <td>100%</td>
+                                    <td>91.00%</td>
+                                    <td>98.65%</td>
+                                    <!-- Add more scores as needed -->
+                                </tr>
+                                <!-- Repeat for other students -->
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
                         
                           
                     </div>

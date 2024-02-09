@@ -1,0 +1,21 @@
+.table-responsive {
+    margin-top: 20px;
+  }
+  .table td, .table th {
+    vertical-align: middle; /* Align table cells content vertically center */
+    text-align: center; /* Center text horizontally */
+  }
+  .table th {
+    background-color: #f8f9fa; /* Light grey background for header cells */
+  }
+  .input-score {
+    width: 80px; /* Smaller width for input fields */
+    margin: auto; /* Center the input field in the cell */
+    display: block;
+  }
+  .filter-bar {
+    padding: 15px 0;
+  }
+  .filter-bar .btn {
+    margin-right: 5px; /* Space between buttons */
+  }

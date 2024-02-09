@@ -1,0 +1,44 @@
+.wd-assignments,
+.wd-assignments * {
+  border-radius: 0%;
+}
+
+.wd-assignments ul {
+  margin: 20px;
+
+}
+
+.wd-assignments-contents {
+  border-left: 2px solid green;
+}
+
+.wd-assignments-title {
+    background-color: lightgray;
+}
+.wd-assignments > li {
+  background-color: lightgray;
+  border: 1px solid gray !important;
+  border-left: none !important;
+}
+
+.wd-assignments > li > div {
+  padding: 6px;
+  border-left: 1px solid gray !important;
+}
+
+.wd-assignments > li > ul > li {
+  padding: 5px;
+  border-top: 1px solid gray !important;
+  border-left: 2px solid green;
+}
+
+.wd-assignments > li {
+  margin-bottom: 20px;
+}
+
+.wd-icon{
+    margin: 20px;
+}
+.list-group-item a {
+  color: black;
+}

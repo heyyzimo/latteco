@@ -1,12 +1,16 @@
 .wd-kanbas-navigation {
     background-color: black;
     list-style: none;
-    padding: 0px;  margin: 0px;
+    padding: 0px;
+    margin: 0px;
     width: 80px;
   }
+
   .wd-kanbas-navigation li {
-    padding: 10px;     margin-bottom: 10px;
-    font-size: 0.8em;  text-align: center;
+    padding: 10px;     
+    margin-bottom: 10px;
+    font-size: 0.8em;  
+    text-align: center;
   }
   .wd-kanbas-navigation li.wd-active {
     background-color: white;
@@ -23,4 +27,5 @@
     font-size: 2em;
     margin-bottom: 5px;
   }
+
   

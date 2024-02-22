@@ -1,0 +1,26 @@
+<h1>Welcome to JavaScript</h1>
+<script>
+    document.write("<h2>Hello World!</h2>");
+    const todos = [
+        {
+            id: 1,
+            text: "Take out trash",
+            isCompleted: true
+        },
+        {
+            id: 2,
+            text: "Meeting with boss",
+            isCompleted: true
+        },
+        {
+            id: 3,
+            text: "Dentist appt",
+            isCompleted: false
+        }]
+
+        document.write("<h3>Todo List</h3>");
+        document.write("<ul>");
+        todos.forEach((todo) =>{
+            document.write(`<li>${todo.text}</li>`);
+        });
+</script>

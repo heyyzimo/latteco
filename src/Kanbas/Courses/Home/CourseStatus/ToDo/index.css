@@ -1,0 +1,14 @@
+.wd-cardicon{
+    color: rgb(186, 13, 13);
+}
+.wd-cardlink{
+    color: rgb(186, 13, 13);
+}
+.card-text{
+    font-size:x-small;
+    color: gray;
+    text-align: right;
+}
+.card{
+    border: 0px;
+}

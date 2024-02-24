@@ -1,0 +1,14 @@
+.btn{
+    color: black;
+    background-color: rgb(240, 240, 240);
+}
+.wd-redbutton{
+    background-color: rgb(203, 7, 7)!important;
+    color: white;
+}
+.list-group-item{
+    border-color: gray ;
+    border-radius: 0 !important;
+    background-color: lightgray ;
+    margin-bottom: 10px;
+}

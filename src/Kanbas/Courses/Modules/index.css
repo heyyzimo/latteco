@@ -7,8 +7,11 @@
     color: white;
 }
 .list-group-item{
-    border-color: gray ;
+    /*border-color: rgb(152, 148, 148) ;*/
     border-radius: 0 !important;
-    background-color: lightgray ;
+    /* background-color: rgb(227, 224, 224) ; */
     margin-bottom: 10px;
+}
+.wd-module-screen{
+    margin-right: 10%;
 }

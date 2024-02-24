@@ -1,7 +1,7 @@
 import ModuleList from "./List";
 function Modules() {
   return (
-    <div>
+    <div className="wd-module-screen">
       <ModuleList />
     </div>
   );

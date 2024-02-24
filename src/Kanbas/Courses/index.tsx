@@ -5,6 +5,8 @@ import { FaGlasses, FaAngleRight } from "react-icons/fa";
 import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import Home from "./Home";
+import Assignments from "./Assignments";
+import AssignmentEditor from "./Assignments/Editor";
 import "./index.css";
 function Courses() {
   const { courseId } = useParams(); // the parameter marked in the route using ':courseId'
@@ -34,8 +36,8 @@ function Courses() {
                     <Route path="Modules" element={<Modules/>} />
                     <Route path="ZoomMeetings" element={<h1>Zoom Meetings</h1>} />
                     <Route path="Piazza" element={<h1>Piazza</h1>} />
-                    <Route path="Assignments" element={<h1>Assignments</h1>} />
-                    <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />
+                    <Route path="Assignments" element={<Assignments/>} />
+                    <Route path="Assignments/:assignmentId" element={<AssignmentEditor/>}/>
                     <Route path="Grades" element={<h1>Grades</h1>} />
                 </Routes>
 

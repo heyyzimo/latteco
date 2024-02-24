@@ -7,7 +7,6 @@ const ToDo = () => {
         <div className="card-body" >
             <PiNumberCircleFiveFill className="wd-cardicon" size={25} />
             <Link to={'#'} className="wd-cardlink"> Grade A1 - ENV + HTML</Link>
-            <button></button>
             <p className="card-text">100 points · Sep 18 at 11:59pm </p>
         </div>
         <div className="card-body" >

@@ -1,0 +1,10 @@
+.no-left-margin {
+    margin-left: 0 !important; /* Use !important to ensure override if necessary */
+  }
+.wd-gradestable th{
+    border: 1px solid #ddd;
+    background-color: #ddd;
+}
+.wd-gradestable {
+    border: 1px solid #ddd;
+}

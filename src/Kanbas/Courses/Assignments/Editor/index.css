@@ -1,3 +1,18 @@
 .wd-editor-ellipsis{
     margin-left: 20px;
 }
+.wd-text-right{
+    text-align: right;
+}
+.wd-card{
+    border: 1px solid rgba(152, 148, 148, 0.323);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.wd-card-body{
+    margin: 20px;
+    padding: 2px 16px;
+}
+.wd-bold-text{
+    font-weight: bold;
+}

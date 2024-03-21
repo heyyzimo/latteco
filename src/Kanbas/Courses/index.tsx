@@ -9,7 +9,9 @@ import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import Grades from "./Grades";
 import "./index.css";
-function Courses() {
+function Courses(
+  { courses }: { courses: any[]; }
+) {
   const { courseId } = useParams(); // the parameter marked in the route using ':courseId'
   const course = courses.find((course) => course._id === courseId);
   const location = useLocation();

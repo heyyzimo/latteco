@@ -1,3 +1,6 @@
 .card{
     border: 1px;
 }
+.wd-courses-title{
+    display: flex;
+}

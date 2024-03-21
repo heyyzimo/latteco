@@ -15,7 +15,9 @@ function Assignments() {
         <input type="text" className="form-control" placeholder="Search For Assignment" style={{width:300}}/>
         <div className="ms-auto">
             <button className="btn btn-outline-secondary ">+Group</button>
+            <Link to= "./Editor">
             <button className="btn btn-danger wd-redbutton ">+Assignment</button>
+            </Link>
             <button className="btn btn-outline-secondary "><FaEllipsisV className="me-2" /></button>
         </div>
        </div>

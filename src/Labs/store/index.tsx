@@ -23,8 +23,6 @@ export interface LabState {
     todo: TodoType;
   }
   ;
-
-
 }
 const store = configureStore({
   reducer: {

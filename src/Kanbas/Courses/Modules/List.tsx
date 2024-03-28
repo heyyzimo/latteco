@@ -14,10 +14,10 @@ import {
 import { KanbasState } from "../../store";
 function ModuleList() {
   const { courseId } = useParams();
-  const moduleList = useSelector((state: KanbasState) => state.modulesReducer.modules);
+  const modules = useSelector((state: KanbasState) => state.modulesReducer.modules);
   const module = useSelector((state: KanbasState) => state.modulesReducer.module);
   const dispatch = useDispatch();
-  const [selectedModule, setSelectedModule] = useState(moduleList[0]); //set the first module as the default selected module
+  const [selectedModule, setSelectedModule] = useState(modules[0]); //set the first module as the default selected module
 
   
   return (
@@ -59,15 +59,15 @@ function ModuleList() {
               />
             </div>
             <div >
-            <button className= "btn wd-bluebutton" onClick={() => dispatch(addModule({...module, course: courseId}))}>Update</button>
-            <button className="btn btn-success wd-greenbutton"  onClick={() => dispatch(updateModule(module))}>Add</button>
+            <button className= "btn wd-bluebutton" onClick={() => dispatch(updateModule(module))}>Update</button>
+            <button className="btn btn-success wd-greenbutton"  onClick={() => dispatch(addModule({...module, course: courseId}))}>Add</button>
             </div>
           </div>
           
         </li>
 
         {/* fetch the modules that match the courseId.*/}
-        {moduleList.filter((module) => module.course === courseId).map((module, index) => (
+        {modules.filter((module) => module.course === courseId).map((module, index) => (
           <li key={index}
             className="list-group-item container"
             onClick={() => setSelectedModule(module)}> {/* set the selected module to the current module*/}

@@ -10,8 +10,8 @@ function TodoList() {
       <h2>Todo List</h2>
       <ul className="list-group">
         <TodoForm />
-        {todos.map((todo: TodoType) => (
-          <TodoItem todo={todo} />
+        {todos.map((todo) => (
+          <TodoItem key={todo.id} todo={todo} />
         ))}
       </ul>
     </div>

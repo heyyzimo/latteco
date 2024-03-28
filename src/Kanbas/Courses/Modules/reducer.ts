@@ -13,10 +13,11 @@ const modulesSlice = createSlice({
   initialState,
   reducers: {
     addModule: (state, action) => {
-      state.modules = [
-        { ...action.payload, _id: new Date().getTime().toString() },
-          ...state.modules,
+      const newModules = [
+        { ...action.payload, _id: new Date().getTime().toString() }, ...state.modules, // override _id to the payload
       ];
+      state.modules = newModules;
+      state.module = { name: "New Module 123", description: "New Description" }; // clear the module
     },
     deleteModule: (state, action) => {
       state.modules = state.modules.filter(
@@ -31,6 +32,7 @@ const modulesSlice = createSlice({
           return module;
         }
       });
+      state.module = { name: "New Module 123", description: "New Description" }; // clear the module
     },
     setModule: (state, action) => {
       state.module = action.payload;

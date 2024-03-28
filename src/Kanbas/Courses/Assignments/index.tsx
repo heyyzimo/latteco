@@ -1,12 +1,16 @@
 import React from "react";
 import { FaCheckCircle, FaEllipsisV, FaPlusCircle, FaEdit, FaListUl } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
-import { assignments } from "../../Database";
 import "./index.css";
+
+import { KanbasState } from "../../store";
+import { useSelector } from "react-redux";
 function Assignments() {
   const { courseId } = useParams();
+ const assignments = useSelector((state: KanbasState) => state.assignmentsReducer.assignments);
   const assignmentList = assignments.filter(
     (assignment) => assignment.course === courseId);
+
   return (
     <>
        {/* Add buttons here */} 
@@ -15,8 +19,8 @@ function Assignments() {
         <input type="text" className="form-control" placeholder="Search For Assignment" style={{width:300}}/>
         <div className="ms-auto">
             <button className="btn btn-outline-secondary ">+Group</button>
-            <Link to= "./Editor">
-            <button className="btn btn-danger wd-redbutton ">+Assignment</button>
+            <Link to= {`/Kanbas/Courses/${courseId}/Assignments/000`}>
+            <button className="btn btn-danger wd-redbutton " onClick={() =>console.log('courseId', courseId)}>+Assignment</button>
             </Link>
             <button className="btn btn-outline-secondary "><FaEllipsisV className="me-2" /></button>
         </div>
@@ -38,8 +42,8 @@ function Assignments() {
                 </div>
             </div>
           <ul className="list-group">
-            {assignmentList.map((assignment) => (
-              <li className="list-group-item">
+            {assignmentList.map((assignment, index) => (
+              <li key={index} className="list-group-item">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-auto">
@@ -56,7 +60,7 @@ function Assignments() {
                                 </Link>
                             </div>
                             <div>
-                                <span className="text-muted">Due: assignmentdueTime | Points</span>
+                                <span className="text-muted">Due: dueDate| Points</span>
                             </div>
                         </div>
                         <div className="col">
@@ -72,5 +76,12 @@ function Assignments() {
       </ul>
     </>
 );}
+
+function useCourseId() {
+  const { courseId } = useParams();
+  return courseId;
+}
 export default Assignments;
+export { useCourseId };
+
 

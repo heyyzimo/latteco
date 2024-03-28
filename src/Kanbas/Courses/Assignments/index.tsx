@@ -5,11 +5,20 @@ import "./index.css";
 
 import { KanbasState } from "../../store";
 import { useSelector } from "react-redux";
+import { deleteAssignment } from "./assignmentsReducer";
+import { useDispatch } from "react-redux";
 function Assignments() {
   const { courseId } = useParams();
- const assignments = useSelector((state: KanbasState) => state.assignmentsReducer.assignments);
+  const dispatch = useDispatch();
+  const assignments = useSelector((state: KanbasState) => state.assignmentsReducer.assignments);
+  const assignment = useSelector((state: KanbasState) => state.assignmentsReducer.assignment);
   const assignmentList = assignments.filter(
     (assignment) => assignment.course === courseId);
+  const handleDelete = (assignment: any) => { 
+    
+    dispatch(deleteAssignment(assignment._id));
+    console.log('Deleting assignment:', assignment, 'assignments after deleting:', assignmentList);
+  }
 
   return (
     <>
@@ -43,6 +52,7 @@ function Assignments() {
             </div>
           <ul className="list-group">
             {assignmentList.map((assignment, index) => (
+                
               <li key={index} className="list-group-item">
                 <div className="container">
                     <div className="row align-items-center">
@@ -61,11 +71,16 @@ function Assignments() {
                             </div>
                             <div>
                                 <span className="text-muted">Due: dueDate| Points</span>
+                                
                             </div>
                         </div>
                         <div className="col">
                         <span className="float-end">
-                    <FaCheckCircle className="text-success" /><FaEllipsisV className="ms-2" /></span>
+                        <button className="btn btn-sm btn-danger wd-redbutton" onClick={() => handleDelete(assignment)} >
+                            Delete
+                        </button>
+                    <FaCheckCircle className="text-success" /><FaEllipsisV className="ms-2" />
+                        </span>
                         </div>
                     </div>
                 </div>

@@ -56,8 +56,6 @@ function Dashboard(
                 <div className="card-body">
                   <Link className="card-title" to={`/Kanbas/Courses/${course._id}/Home`}
                     style={{ textDecoration: "none", color: "navy", fontWeight: "bold" }}>
-
-                      
                       <div style={{textAlign: 'right'}}>
                       <button className="btn btn-sm btn-primary" onClick={(e) => {
                         e.preventDefault();
@@ -80,7 +78,7 @@ function Dashboard(
                     </Link>
                     
                   <p className="card-text">{course.name}</p>
-                  <Link to={`/Kanbas/Courses/${course._id}/Home`} className="btn btn-primary">
+                  <Link to={`/Kanbas/courses/${course._id}/Home`} className="btn btn-primary">
                     Go </Link>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { modules } from "../../Database";
 import { FaEllipsisV, FaCheckCircle, FaPlusCircle } from "react-icons/fa";
@@ -10,10 +10,36 @@ import {
   deleteModule,
   updateModule,
   setModule,
+  setModules,
 } from "./reducer";
+import * as client from "./client";
 import { KanbasState } from "../../store";
 function ModuleList() {
   const { courseId } = useParams();
+  const handleAddModule = () => {
+    client.createModule(courseId!, module).then((module) => {
+      dispatch(addModule({...module, course: courseId}));
+    });
+  };
+  const handleDeleteModule = (moduleId: string) => {
+    client.deleteModule(moduleId).then((status) => {
+      dispatch(deleteModule(moduleId));
+    });
+  
+  };
+  const handleUpdateModule = async () => {
+    const status = await client.updateModule(module);
+    dispatch(updateModule(module));
+  };
+
+
+  useEffect(() => {
+    client.findModulesForCourse(courseId!)
+      .then((modules) =>
+        dispatch(setModules(modules))
+    );
+  }, [courseId]);
+
   const modules = useSelector((state: KanbasState) => state.modulesReducer.modules);
   const module = useSelector((state: KanbasState) => state.modulesReducer.module);
   const dispatch = useDispatch();
@@ -59,8 +85,8 @@ function ModuleList() {
               />
             </div>
             <div >
-            <button className= "btn wd-bluebutton" onClick={() => dispatch(updateModule(module))}>Update</button>
-            <button className="btn btn-success wd-greenbutton"  onClick={() => dispatch(addModule({...module, course: courseId}))}>Add</button>
+            <button className= "btn wd-bluebutton" onClick={handleUpdateModule}>Update</button>
+            <button className="btn btn-success wd-greenbutton"  onClick={handleAddModule}>Add</button>
             </div>
           </div>
           
@@ -78,7 +104,7 @@ function ModuleList() {
               <span className="ms-auto">
               <button
               className="btn btn-sm btn-danger wd-redbutton"
-              onClick={() => dispatch(deleteModule(module._id))}>
+              onClick={() => handleDeleteModule(module._id)}>
               Delete
               </button>
               <button

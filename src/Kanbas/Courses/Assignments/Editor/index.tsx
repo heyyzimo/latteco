@@ -3,8 +3,10 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { assignments } from "../../../Database";
 import { FaCheckCircle, FaEllipsisV, FaCalendarAlt} from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import { addAssignment, deleteAssignment, updateAssignment, selectAssignment } from "../assignmentsReducer";
+import { addAssignment, deleteAssignment, updateAssignment, selectAssignment, setAssignments } from "../assignmentsReducer";
 import { KanbasState } from "../../../store";
+import * as client from "../client";
+import axios from "axios";
 
 import "./index.css";
 function AssignmentEditor() {
@@ -28,7 +30,19 @@ function AssignmentEditor() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   console.log('courseId:', courseId, 'assignmentId:', assignment._id, 'end', 'duedate:', assignment.due, 'assignmentTitle:', assignment.title, 'assignmentDescription:', assignment.description, 'points:', assignment.points);
-  const handleSave = () => {
+  //create
+  const handleAddAssignment = () => {
+    client.createAssignment(courseId!, assignment).then((assignment) => {
+      dispatch(addAssignment({...assignment, course: courseId}));
+    });
+  };
+  //update
+  const handleUpdateAssignment = async () => {
+    const status = await client.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment));
+  };
+
+  const handleSave = async() => {
     const isEditing = assignment._id !== '000';
     const updatedAssignment = { ...assignment };
     // edit existing assignment or add new assignment
@@ -37,11 +51,14 @@ function AssignmentEditor() {
     console.log('Saving assignment:', assignment?.title, 'to course:', courseId);
     // !: non-null assertion 
     // add new assignment when assignment._id is null, update assignment otherwise
-    if(isEditing) {
+    if(isEditing) { // update
+      const status = await client.updateAssignment(assignment);
       dispatch(updateAssignment(updatedAssignment));
       console.log("Updated Assignment:", updatedAssignment);
-    } else {
-      dispatch(addAssignment({...updatedAssignment, course: courseId}));
+    } else { // create
+      client.createAssignment(courseId!, assignment).then((assignment) => {
+        dispatch(addAssignment({...assignment, course: courseId}));
+      });
       console.log("Added Assignment:", updatedAssignment);
     }
 

@@ -14,12 +14,13 @@
     background-color: rgb(12, 83, 234)!important;
     color: white;
 }
-.list-group-item{
-    /*border-color: rgb(152, 148, 148) ;*/
-    border-radius: 0 !important;
-    /* background-color: rgb(227, 224, 224) ; */
-    margin-bottom: 10px;
+
+.wd-yellowbutton{
+    background-color: rgba(243, 164, 27, 0.972)!important;
+    color: black;
 }
+
+
 .wd-module-screen{
     margin-right: 10%;
 }

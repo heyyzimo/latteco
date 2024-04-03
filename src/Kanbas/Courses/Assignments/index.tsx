@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { FaCheckCircle, FaEllipsisV, FaPlusCircle, FaEdit, FaListUl } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import "./index.css";
-
+import * as client from "./client";  
 import { KanbasState } from "../../store";
 import { useSelector } from "react-redux";
-import { deleteAssignment } from "./assignmentsReducer";
+import { deleteAssignment, setAssignments } from "./assignmentsReducer";
 import { useDispatch } from "react-redux";
 function Assignments() {
   const { courseId } = useParams();
@@ -15,10 +15,17 @@ function Assignments() {
   const assignmentList = assignments.filter(
     (assignment) => assignment.course === courseId);
   const handleDelete = (assignment: any) => { 
-    
-    dispatch(deleteAssignment(assignment._id));
-    console.log('Deleting assignment:', assignment, 'assignments after deleting:', assignmentList);
-  }
+    client.deleteAssignment(assignment._id).then((status) => {
+      dispatch(deleteAssignment(assignment._id));
+      console.log('Deleting assignment:', assignment, 'assignments after deleting:', assignmentList);
+    })
+  };
+  useEffect(() => {
+    client.findAssignmentsForCourse(courseId!)
+      .then((assignments) =>
+        dispatch(setAssignments(assignments))
+    );
+  }, [courseId]);
 
   return (
     <>
@@ -70,7 +77,7 @@ function Assignments() {
                                 </Link>
                             </div>
                             <div>
-                                <span className="text-muted">Due: dueDate| Points</span>
+                                <span className="text-muted">Due: {assignment.due}| Points: {assignment.points}</span>
                                 
                             </div>
                         </div>
@@ -90,13 +97,15 @@ function Assignments() {
         </li>
       </ul>
     </>
-);}
+);
+}
+
 
 function useCourseId() {
   const { courseId } = useParams();
   return courseId;
 }
-export default Assignments;
-export { useCourseId };
 
+export { useCourseId };
+export default Assignments;
 

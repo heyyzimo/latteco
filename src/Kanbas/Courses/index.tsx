@@ -1,4 +1,5 @@
-import { courses } from "../../Kanbas/Database";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Navigate, Route, Routes, useParams, useLocation, Link } from "react-router-dom";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { FaGlasses, FaAngleRight } from "react-icons/fa";
@@ -9,21 +10,37 @@ import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import Grades from "./Grades";
 import "./index.css";
-function Courses(
-  { courses }: { courses: any[]; }
-) {
+function Courses() {
   const { courseId } = useParams(); // the parameter marked in the route using ':courseId'
-  const course = courses.find((course) => course._id === courseId);
+  const API_BASE = process.env.REACT_APP_API_BASE;
+  //const COURSES_API = `http://localhost:4000/api/courses`;
+  const COURSES_API = `${API_BASE}/api/courses`;
+  const [course, setCourse] = useState<any>({ _id: "" });
+  const findCourseById = async (courseId?: string) => {
+    const response = await axios.get(
+      `${COURSES_API}/${courseId}`
+    );
+    setCourse(response.data);
+  };
+  useEffect(() => {
+    findCourseById(courseId);
+  }, [courseId]);
+
+
+  /*const course = courses.find((course) => course._id === courseId);
   const location = useLocation();
   // track current course navigation tab for breadcrumb
   const pathnames = location.pathname.split('/').filter(x => x);
-  const currentTab = pathnames[pathnames.length - 1];
+    const currentTab = pathnames[pathnames.length - 1];
+  */
+
+  
   return (
     <div>
       <span className="wd-breadcrumb" >
         <HiMiniBars3 /> {course?.number}  {course?._id} {course?.name}
         <FaAngleRight /> 
-        {currentTab}
+        {/*currentTab*/}
         <button className="btn btn-outline-secondary float-end"><FaGlasses/>  Student View</button>
       </span>
       <hr/><br/>

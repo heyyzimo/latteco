@@ -11,11 +11,14 @@ import AssignmentEditor from "./Assignments/Editor";
 import Grades from "./Grades";
 import "./index.css";
 function Courses() {
+  
   const { courseId } = useParams(); // the parameter marked in the route using ':courseId'
+  console.log(courseId);
   const API_BASE = process.env.REACT_APP_API_BASE;
   //const COURSES_API = `http://localhost:4000/api/courses`;
   const COURSES_API = `${API_BASE}/api/courses`;
-  const [course, setCourse] = useState<any>({ _id: "" });
+  const [course, setCourse] = useState<any>({ _id: courseId });
+  
   const findCourseById = async (courseId?: string) => {
     const response = await axios.get(
       `${COURSES_API}/${courseId}`
@@ -23,7 +26,11 @@ function Courses() {
     setCourse(response.data);
   };
   useEffect(() => {
-    findCourseById(courseId);
+    if(courseId){
+      findCourseById(courseId);
+
+    }
+    
   }, [courseId]);
 
 

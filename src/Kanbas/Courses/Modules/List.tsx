@@ -43,7 +43,7 @@ function ModuleList() {
   const modules = useSelector((state: KanbasState) => state.modulesReducer.modules);
   const module = useSelector((state: KanbasState) => state.modulesReducer.module);
   const dispatch = useDispatch();
-  const [selectedModule, setSelectedModule] = useState(modules[0]); //set the first module as the default selected module
+  const [selectedModule, setSelectedModule] = useState(module); //set the first module as the default selected module
 
   
   return (

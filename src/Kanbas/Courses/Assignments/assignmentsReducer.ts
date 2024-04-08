@@ -51,14 +51,14 @@ const assignmentsSlice = createSlice({
             );
         },
         updateAssignment: (state, action) => {
-            const newAssignments = state.assignments.map((assignment) => {
+            state.assignments = state.assignments.map((assignment) => {
             if (assignment._id === action.payload._id) {
                 return action.payload;
             } else {
                 return assignment;
             }
             });
-            state.assignments = newAssignments;
+            
             state.assignment = {
                 _id: '000',
                 title: 'New Assignment 123', 

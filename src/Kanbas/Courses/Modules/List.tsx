@@ -17,8 +17,9 @@ import { KanbasState } from "../../store";
 function ModuleList() {
   const { courseId } = useParams();
   const handleAddModule = () => {
-    client.createModule(courseId!, module).then((module) => {
+    client.createModule(courseId! , module).then((module) => {
       dispatch(addModule({...module, course: courseId}));
+      
     });
   };
   const handleDeleteModule = (moduleId: string) => {
@@ -32,18 +33,19 @@ function ModuleList() {
     dispatch(updateModule(module));
   };
 
-
+  const modules = useSelector((state: KanbasState) => state.modulesReducer.modules);
+  const module = useSelector((state: KanbasState) => state.modulesReducer.module);
+  const dispatch = useDispatch();
+  const [selectedModule, setSelectedModule] = useState(module); //set the first module as the default selected module
   useEffect(() => {
-    client.findModulesForCourse(courseId!)
+    client.findModulesForCourse(courseId )
       .then((modules) =>
         dispatch(setModules(modules))
     );
   }, [courseId]);
 
-  const modules = useSelector((state: KanbasState) => state.modulesReducer.modules);
-  const module = useSelector((state: KanbasState) => state.modulesReducer.module);
-  const dispatch = useDispatch();
-  const [selectedModule, setSelectedModule] = useState(module); //set the first module as the default selected module
+
+ 
 
   
   return (

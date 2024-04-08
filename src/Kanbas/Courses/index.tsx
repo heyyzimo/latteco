@@ -10,12 +10,18 @@ import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import Grades from "./Grades";
 import "./index.css";
+import Quizzes from "./Quizzes";
+import QuizEditor from "./Quizzes/QuizEditor";
+import QuizzesDetails from "./Quizzes/Details";
 function Courses() {
+  
   const { courseId } = useParams(); // the parameter marked in the route using ':courseId'
+  console.log(courseId);
   const API_BASE = process.env.REACT_APP_API_BASE;
   //const COURSES_API = `http://localhost:4000/api/courses`;
   const COURSES_API = `${API_BASE}/api/courses`;
-  const [course, setCourse] = useState<any>({ _id: "" });
+  const [course, setCourse] = useState<any>({ _id: courseId });
+  
   const findCourseById = async (courseId?: string) => {
     const response = await axios.get(
       `${COURSES_API}/${courseId}`
@@ -23,7 +29,11 @@ function Courses() {
     setCourse(response.data);
   };
   useEffect(() => {
-    findCourseById(courseId);
+    if(courseId){
+      findCourseById(courseId);
+
+    }
+    
   }, [courseId]);
 
 
@@ -58,6 +68,9 @@ function Courses() {
                     <Route path="Piazza" element={<h1>Piazza</h1>} />
                     <Route path="Assignments" element={<Assignments/>} />
                     <Route path="Assignments/:assignmentId" element={<AssignmentEditor/>}/>
+                    <Route path="Quizzes" element={<Quizzes/>} />
+                    <Route path="Quizzes/:quizId" element={<QuizEditor/>}/>
+                    <Route path="Quizzes/QuizzesDetails/:quizId" element={<QuizzesDetails/>}/>
                     <Route path="Grades" element={<Grades />} />
                 </Routes>
             </div>

@@ -4,8 +4,8 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { KanbasState } from "../../store";
 import * as client from "./client";
 import "./index.css";
-import { useEffect } from "react";
-import { addQuiz, deleteQuiz, setQuizzes, updateQuiz } from "./quizzesReducer";
+import { useEffect, useState } from "react";
+import { addQuiz, deleteQuiz, setQuizzes, updateQuiz, setQuiz } from "./quizzesReducer";
 import { Dropdown } from 'react-bootstrap';
 
 
@@ -17,6 +17,18 @@ function Quizzes() {
     const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
     const quizList = quizzes.filter(
         (quiz) => quiz.course === courseId);
+    const [published, setPublished] = useState(false);
+    const getAvailability = (quiz: any) => {
+        const currentDate = new Date().toISOString().split('T')[0];
+        const { availableFrom, availableUntil } = quiz;
+        if (currentDate < availableFrom) {
+            return `Not available until ${availableFrom}`;
+        } else if (currentDate >= availableFrom && currentDate <= availableUntil) {
+            return `Available until ${availableUntil}`;
+        } else {
+            return "Closed";
+        }
+    }
     const handleAddQuiz = async() => {
         client.createQuiz(courseId!, quiz).then((quiz) => {
             dispatch(addQuiz({...quiz, course: courseId}));
@@ -34,8 +46,8 @@ function Quizzes() {
     const handlePublish = async (quiz : any) => {
         const updatedQuiz = {...quiz, published: !quiz.published};
         //console.log('Publishing quiz:', quiz, 'quizzes before publishing:', quizList);
-        //const status = await updateQuiz(updatedQuiz);
-        //    dispatch(updateQuiz(updatedQuiz));   
+        const status = await client.updateQuiz(updatedQuiz);
+        dispatch(updateQuiz(updatedQuiz));   
     }
     useEffect(() => {
         client.findQuizzesForCourse(courseId!)
@@ -80,21 +92,24 @@ function Quizzes() {
                         <div className="col-auto"> {/*quiz content*/}
                             <div className="fw-bold"> {/*1st line*/}
                                 <Link className="text-decoration-none" style={{color:"black"}}
-                                    to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz.quizId}`}>{quiz.title}
+                                    to={`/Kanbas/Courses/${courseId}/Quizzes/QuizzesDetails/${quiz.quizId}`}>{quiz.title}
                                 </Link>
                             </div>
                             <div>
-                                <span className="text-muted">Not Available Until: {quiz.availableFrom} | Due: {quiz.due}| {quiz.points} pts </span>
+                                <span className="text-muted">{getAvailability(quiz)} | Due: {quiz.due}| {quiz.points} pts </span>
                             </div>
                         </div>
                         <div className="col d-flex justify-content-end align-items-center ">
-                        { (quiz.pulished == true) ? 
-                        <button className="wd-no-border-button"><FaCheckCircle className="text-success" /></button> 
-                        : 
-                        <button className="wd-no-border-button" onClick={handlePublish}><FaBan style={{color:"grey"}}/></button>
                         
-                        
+                        <button className="wd-no-border-button" onClick={() => handlePublish(quiz)}>
+                        { quiz.published ?  
+                        <FaCheckCircle className="text-success" />
+                            :
+                        <FaBan style={{color:"grey"}}/>
                         }
+
+                        </button>
+                        
                         <Dropdown>
                             <Dropdown.Toggle className="wd-no-caret wd-no-border-button" id="dropdown-basic" >
                             <FaEllipsisV className="ms-2" />

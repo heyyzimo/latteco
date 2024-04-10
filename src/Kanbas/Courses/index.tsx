@@ -13,8 +13,8 @@ import "./index.css";
 import Quizzes from "./Quizzes";
 import QuizEditor from "./Quizzes/QuizEditor";
 import QuizzesDetails from "./Quizzes/Details";
+import QuizPreview from "./Quizzes/Preview";
 function Courses() {
-  
   const { courseId } = useParams(); // the parameter marked in the route using ':courseId'
   console.log(courseId);
   const API_BASE = process.env.REACT_APP_API_BASE;
@@ -71,6 +71,7 @@ function Courses() {
                     <Route path="Quizzes" element={<Quizzes/>} />
                     <Route path="Quizzes/:quizId" element={<QuizEditor/>}/>
                     <Route path="Quizzes/QuizzesDetails/:quizId" element={<QuizzesDetails/>}/>
+                    <Route path="Quizzes/QuizPreview/:quizId" element={<QuizPreview/>}/>
                     <Route path="Grades" element={<Grades />} />
                 </Routes>
             </div>

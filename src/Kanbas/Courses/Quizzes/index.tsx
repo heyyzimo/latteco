@@ -17,6 +17,8 @@ function Quizzes() {
     const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
     const quizList = quizzes.filter(
         (quiz) => quiz.course === courseId);
+    console.log(`quizzes`, quizzes);
+    console.log('quizList:', quizList);
     const [published, setPublished] = useState(false);
     const getAvailability = (quiz: any) => {
         const currentDate = new Date().toISOString().split('T')[0];
@@ -32,7 +34,9 @@ function Quizzes() {
     const handleAddQuiz = async() => {
         client.createQuiz(courseId!, quiz).then((quiz) => {
             dispatch(addQuiz({...quiz, course: courseId}));
+            dispatch(setQuiz(quiz));
         });
+        
         navigate(`/Kanbas/Courses/${courseId}/Quizzes/QuizzesDetails/${quiz.quizId}`);
     };
     const handleDelete = (quiz: any) => {
@@ -64,7 +68,6 @@ function Quizzes() {
             {/*navigate to the quizzesdetails page*/}
             
             <button className="btn btn-danger wd-redbutton " onClick={handleAddQuiz}> + Quiz</button>
-            
             <button className="btn btn-outline-secondary "><FaEllipsisV className="me-2" /></button>
         </div>
        </div>

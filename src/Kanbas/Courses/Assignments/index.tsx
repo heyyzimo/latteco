@@ -15,10 +15,13 @@ function Assignments() {
   const assignmentList = assignments.filter(
     (assignment) => assignment.course === courseId);
   const handleDelete = (assignment: any) => { 
-    client.deleteAssignment(assignment._id).then((status) => {
-      dispatch(deleteAssignment(assignment._id));
-      console.log('Deleting assignment:', assignment, 'assignments after deleting:', assignmentList);
-    })
+    if (window.confirm("Are you sure you want to remove this assignment?")){
+      client.deleteAssignment(assignment._id).then((status) => {
+        dispatch(deleteAssignment(assignment._id));
+        console.log('Deleting assignment:', assignment, 'assignments after deleting:', assignmentList);
+      })
+    }
+    
   };
   useEffect(() => {
     client.findAssignmentsForCourse(courseId!)

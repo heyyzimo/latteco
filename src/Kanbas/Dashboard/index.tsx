@@ -79,7 +79,7 @@ function Dashboard(
                     
                   <p className="card-text">{course.name}</p>
                   {course._id && (
-                    <Link to={`/Kanbas/Courses/${course._id}/Home` } className="btn btn-primary">
+                    <Link to={`/Kanbas/courses/${course._id}/Home` } className="btn btn-primary">
                     Go </Link>
                   )}
                 </div>

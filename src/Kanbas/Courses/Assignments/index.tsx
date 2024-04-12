@@ -9,6 +9,7 @@ import { deleteAssignment, setAssignments } from "./assignmentsReducer";
 import { useDispatch } from "react-redux";
 function Assignments() {
   const { courseId } = useParams();
+  console.log('courseId:', courseId);
   const dispatch = useDispatch();
   const assignments = useSelector((state: KanbasState) => state.assignmentsReducer.assignments);
   const assignment = useSelector((state: KanbasState) => state.assignmentsReducer.assignment);

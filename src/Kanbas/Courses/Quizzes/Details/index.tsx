@@ -17,7 +17,10 @@ function QuizzesDetails(){
     const quizList = quizzes.filter(
         (quiz) => quiz.course === courseId);
     //console.log('quizzes:', quizzes);
-    const currentQuiz = quizList.find((quiz) => quiz.quizId === quizId);
+    let currentQuiz = quizList.find((quiz) => quiz.quizId === quizId);
+    if (currentQuiz === undefined) {
+        currentQuiz = quiz;
+    }
     console.log('currentQuiz:', currentQuiz);
     const navigate = useNavigate();
     const handlePublishButton = async (quiz : any) => {

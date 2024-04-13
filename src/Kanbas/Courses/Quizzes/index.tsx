@@ -118,15 +118,19 @@ function Quizzes() {
                             <FaEllipsisV className="ms-2" />
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                            <Dropdown.Item className="text-center" >
-                                <Link className="text-decoration-none" style={{color:"black"}} 
-                                to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz.quizId}`}>Edit</Link>
+                            <Dropdown.Item className="text-center" onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz.quizId}`)} >
+                                Edit
+                                {/*<Link className="text-decoration-none" style={{color:"black"}} 
+                                to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz.quizId}`}>Edit</Link>*/}
+
                                 </Dropdown.Item>
                             <Dropdown.Item className="text-center"> 
-                            <button className="wd-no-border-button"  onClick={handleDelete}>Delete</button>
+                            <button className="wd-no-border-button"  onClick={() => handleDelete(quiz)}>Delete</button>
                             {/*<button className="btn btn-sm btn-danger wd-redbutton" onClick={() => handleDelete(quiz)} >Delete</button>*/}
                             </Dropdown.Item>
-                            <Dropdown.Item className="text-center" href="#/action-3">Publish</Dropdown.Item>
+                            <Dropdown.Item className="text-center"  onClick={() => handlePublish(quiz)}>
+                                {quiz.published ? 'Unpublish' : 'Publish'}
+                            </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                         </div>

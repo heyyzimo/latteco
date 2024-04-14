@@ -13,6 +13,15 @@ export const signin = async (credentials: User) => {
   const response = await axios.post( `${USERS_API}/signin`, credentials );
   return response.data;
 };
+export const signup = async (user:User) => {
+    const response = await axios.post(`${USERS_API}/signup`, user);
+    return response.data;
+  };  
+export const signout = async () => {
+    const response = await axios.post(`${USERS_API}/signout`);
+    return response.data;
+};
+  
 // return the currentUser stored in the server.
 export const profile = async () => {
     const response = await axios.post(`${USERS_API}/profile`);
@@ -36,6 +45,17 @@ export const deleteUser = async (user: any) => {
       `${USERS_API}/${user._id}`);
     return response.data;
   };
+export const findUserById = async (id: string) => {
+    const response = await axios.get(`${USERS_API}/${id}`);
+    return response.data;
+};
+export const findUsersByRole = async (role: string) => {
+    const response = await
+      axios.get(`${USERS_API}?role=${role}`);
+    return response.data;
+  };
+  
+  
   
   
   

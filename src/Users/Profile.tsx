@@ -6,28 +6,38 @@ export default function Profile() {
   const [profile, setProfile] = useState({ username: "", password: "", 
     firstName: "", lastName: "", dob: "", email: "", role: "USER" });
   const navigate = useNavigate();
+  const signout = async () => {
+    await client.signout();
+    navigate("/Kanbas/Account/Signin");
+  };
+  
   const fetchProfile = async () => {
-    
     const account = await client.profile();
     setProfile(account);
+    console.log("Profile is set to:", profile);
   };
   const save = async () => {
     await client.updateUser(profile);
   };
   useEffect(() => {
     fetchProfile();
+    console.log("fetched Profile:", profile);
   }, []);
   return (
     <div>
-      <span><h3>Profile</h3>
-      <button className="btn wd-bluebutton" onClick={save}>
+      <h3>Profile</h3>
+        <button className="btn wd-bluebutton" onClick={save}>
             Save
-        </button></span>
+        </button>
+        <button className="btn wd-redbutton" onClick={signout}>
+            Signout
+        </button>
+
         <Link to="/Kanbas/Account/Admin/Users" className="btn wd-yellowbutton w-40">
             Users
         </Link>
 
-      {profile && (
+      {profile  && (
         <div>
           <input className="wd-inputs form-control" value={profile.username} onChange={(e) =>
             setProfile({ ...profile, username: e.target.value })}/>

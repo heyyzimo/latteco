@@ -19,7 +19,7 @@ export default function Signin() {
         setCredentials({ ...credentials, username: e.target.value })}/>
       <input className="form-control"  style={{width:'50%'}} value={credentials.password} onChange={(e) =>
         setCredentials({ ...credentials, password: e.target.value })}/>
-      <button className="btn wd-bluebutton form-control"  style={{width:'50%'}}onClick={signin}> Signin </button>
+      <button className="btn wd-bluebutton form-control"  style={{width:'50%'}} onClick={signin}> Signin </button>
       </div>
 
   );

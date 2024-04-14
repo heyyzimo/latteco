@@ -14,10 +14,16 @@ export default function Signup() {
   const navigate = useNavigate();
   const signup = async () => {
     try {
+        if (!user.username) {
+            throw new Error('Username is required');
+        }
+        if (!user.password) {
+            throw new Error('Password is required');
+        }
       await client.signup(user);
       navigate("/Kanbas/Account/Profile");
     } catch (error : any) {
-      setError(error.response.data.message);
+      setError(error.message);
     }
   };
   return (

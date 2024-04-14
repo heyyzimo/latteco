@@ -80,10 +80,11 @@ export default function UserTable() {
           
           <tr className="form-group form-inline">
             <td>
+                <input value={user.username} onChange={(e) =>
+                setUser({ ...user, username: e.target.value })}/>
               <input value={user.password} onChange={(e) =>
                 setUser({ ...user, password: e.target.value })}/>
-              <input value={user.username} onChange={(e) =>
-                setUser({ ...user, username: e.target.value })}/>
+              
             </td>
             <td>
               <input value={user.firstName} onChange={(e) =>

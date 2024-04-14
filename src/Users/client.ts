@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_API = process.env.REACT_APP_BASE_API_URL;
+const BASE_API = process.env.REACT_APP_API_BASE;
 const USERS_API = `${BASE_API}/api/users`;
 export interface User { 
     _id: string; 

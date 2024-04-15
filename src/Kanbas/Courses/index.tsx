@@ -48,7 +48,7 @@ function Courses() {
   return (
     <div>
       <span className="wd-breadcrumb" >
-        <HiMiniBars3 /> {course?.number}  {course?._id} {course?.name}
+        <HiMiniBars3 /> {course?.number}  {course?.id} {course?.name}
         <FaAngleRight /> 
         {/*currentTab*/}
         <button className="btn btn-outline-secondary float-end"><FaGlasses/>  Student View</button>

@@ -8,7 +8,6 @@ import  QuizDetails  from "./QuizDetails";
 import QuizQuestions  from "./QuizQuestions";
 import * as client from "../client";
 
-
 function QuizEditor(){
     const { pathname } = useLocation();
     const { courseId, quizId } = useParams();
@@ -33,7 +32,6 @@ function QuizEditor(){
     }, [courseId]);
     return (
         <>
-        
         <div className="wd-assignment-buttons d-flex" >
 
         <div className="ms-auto">
@@ -49,8 +47,7 @@ function QuizEditor(){
             {
                 currentQuiz.published ? 'Published' : 'Not Published'
             }
-            </span>
-            
+            </span>    
             <button className="btn btn-outline-secondary me-1 btn-sm"><FaEllipsisV className="me-2" /></button>
         </div>
        </div>
@@ -60,24 +57,22 @@ function QuizEditor(){
         <ul className="nav nav-tabs">
             <li className="nav-item">
                 <Link className={pathname.includes('details') ? 'nav-link active' : 'nav-link'} 
-                to={`/Kanbas/Courses/${courseId}/Quizzes/QuizzesDetails/${quiz.id}/details`} data-bs-toggle="tab">Details</Link>
+                to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz.id}/details`} data-bs-toggle="tab">Details</Link>
             </li>
             <li className="nav-item">
                 <Link className={pathname.includes('questions') ? 'nav-link active' : 'nav-link'}
-                to={`/Kanbas/Courses/${courseId}/Quizzes/QuizzesDetails/${quiz.id}/questions`} data-bs-toggle="tab">Questions</Link>
+                to={`/Kanbas/Courses/${courseId}/Quizzes/${currentQuiz.id}/questions`} data-bs-toggle="tab">Questions</Link>
             </li>
         </ul>
-
        </div>
 
        {/*Tab Content*/}
 
         <Routes>
-            <Route path="/" element = {<Navigate to={`details`}/>}/>
-            <Route path={`details`} element={<QuizDetails />} />
-            <Route path={`questions`} element={<QuizQuestions />} />
+            <Route path="/" element = {<Navigate to="details"/>}/>
+            <Route path="details" element={<QuizDetails currentQuiz = {currentQuiz} />} />
+            <Route path='questions' element={<QuizQuestions currentQuiz = {currentQuiz} />} />
         </Routes>
-
         </>
 
     );

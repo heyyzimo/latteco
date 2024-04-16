@@ -86,7 +86,7 @@ function Dashboard(
                 <img src={`/images/${course.image}`} className="card-img-top"
                      style={{ height: 150 }}/>
                 <div className="card-body">
-                  <Link className="card-title" to={`/Kanbas/Courses/${course.courseId}/Home`}
+                  <Link className="card-title" to={`/Kanbas/Courses/${course.id}/Home`}
                     style={{ textDecoration: "none", color: "navy", fontWeight: "bold" }}>
                       <div style={{textAlign: 'right'}}>
                       <button className="btn btn-sm btn-primary" onClick={(e) => {

@@ -1,0 +1,12 @@
+.wd-small-input{
+    width: 10%;
+}
+.wd-card{
+    border: 1px solid rgba(152, 148, 148, 0.323);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.wd-card-body{
+    margin: 10px;
+    padding: 2px 16px;
+}

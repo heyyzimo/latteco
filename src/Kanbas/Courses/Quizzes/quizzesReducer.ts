@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 interface QuizType {
-    quizId: string;
+    id: string;
     course: string;
     title: string;
     due: string;
@@ -24,7 +24,7 @@ interface QuizType {
 const initialState = {
     quizzes: [] as QuizType[],
     quiz: {
-        quizId: '000',
+        id: '000',
         title: 'New Quiz 123',
         course: 'RS000',
         due: new Date().toISOString().split('T')[0],
@@ -52,11 +52,11 @@ const quizzesSlice = createSlice({
         addQuiz: (state, action) => {
             const newQuizzes = [
                 ...state.quizzes,
-                {...action.payload, quizId: new Date().getTime().toString()},
+                {...action.payload, id: new Date().getTime().toString()},
             ];
             state.quizzes = newQuizzes;
             state.quiz = {
-                quizId: '000',
+                id: '000',
                 title: 'New Quiz 123',
                 course: 'RS000',
                 due: new Date().toISOString().split('T')[0],
@@ -78,12 +78,12 @@ const quizzesSlice = createSlice({
         },
         deleteQuiz: (state, action) => {
             state.quizzes = state.quizzes.filter(
-                (quiz) => quiz.quizId !== action.payload
+                (quiz) => quiz.id !== action.payload
             );
         },
         updateQuiz: (state, action) => {
             const newQuizzes = state.quizzes.map((quiz) => {
-                if (quiz.quizId === action.payload.quizId) {
+                if (quiz.id === action.payload.id) {
                     return action.payload;
                 } else {
                     return quiz;
@@ -91,7 +91,7 @@ const quizzesSlice = createSlice({
             });
             state.quizzes = newQuizzes;
             state.quiz = {
-                quizId: '000',
+                id: '000',
                 title: 'New Quiz 123',
                 course: 'RS000',
                 due: new Date().toISOString().split('T')[0],

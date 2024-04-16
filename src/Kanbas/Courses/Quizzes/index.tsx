@@ -20,13 +20,14 @@ function Quizzes() {
     console.log(`quizzes`, quizzes);
     console.log('quizList:', quizList);
     const [published, setPublished] = useState(false);
+    // get the availability of the quiz: available until, available from, closed
     const getAvailability = (quiz: any) => {
         const currentDate = new Date().toISOString().split('T')[0];
         const { availableFrom, availableUntil } = quiz;
         if (currentDate < availableFrom) {
-            return `Not available until ${availableFrom}`;
+            return `Not available until ${availableFrom.toString().split('T')[0]}`;
         } else if (currentDate >= availableFrom && currentDate <= availableUntil) {
-            return `Available until ${availableUntil}`;
+            return `Available until ${availableUntil.toString().split('T')[0]}`;
         } else {
             return "Closed";
         }
@@ -37,11 +38,11 @@ function Quizzes() {
             dispatch(setQuiz(quiz));
         });
         
-        navigate(`/Kanbas/Courses/${courseId}/Quizzes/QuizzesDetails/${quiz.quizId}`);
+        navigate(`/Kanbas/Courses/${courseId}/Quizzes/QuizzesDetails/${quiz.id}`);
     };
     const handleDelete = (quiz: any) => {
-        client.deleteQuiz(quiz.quizId).then((status) => {
-            dispatch(deleteQuiz(quiz.quizId));
+        client.deleteQuiz(quiz.id).then((status) => {
+            dispatch(deleteQuiz(quiz.id));
             console.log('Deleting quiz:', quiz, 'quizzes after deleting:', quizList);
         });
     };
@@ -95,11 +96,11 @@ function Quizzes() {
                         <div className="col-auto"> {/*quiz content*/}
                             <div className="fw-bold"> {/*1st line*/}
                                 <Link className="text-decoration-none" style={{color:"black"}}
-                                    to={`/Kanbas/Courses/${courseId}/Quizzes/QuizzesDetails/${quiz.quizId}`}>{quiz.title}
+                                    to={`/Kanbas/Courses/${courseId}/Quizzes/QuizzesDetails/${quiz.id}`}>{quiz.title}
                                 </Link>
                             </div>
                             <div>
-                                <span className="text-muted">{getAvailability(quiz)} | Due: {quiz.due}| {quiz.points} pts </span>
+                                <span className="text-muted">{getAvailability(quiz)} | Due: {quiz.due.toString().split('T')[0]}| {quiz.points} pts </span>
                             </div>
                         </div>
                         <div className="col d-flex justify-content-end align-items-center ">
@@ -118,10 +119,10 @@ function Quizzes() {
                             <FaEllipsisV className="ms-2" />
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                            <Dropdown.Item className="text-center" onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz.quizId}`)} >
+                            <Dropdown.Item className="text-center" onClick={() => navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz.id}`)} >
                                 Edit
                                 {/*<Link className="text-decoration-none" style={{color:"black"}} 
-                                to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz.quizId}`}>Edit</Link>*/}
+                                to={`/Kanbas/Courses/${courseId}/Quizzes/${quiz.id}`}>Edit</Link>*/}
 
                                 </Dropdown.Item>
                             <Dropdown.Item className="text-center"> 

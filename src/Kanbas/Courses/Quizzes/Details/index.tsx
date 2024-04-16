@@ -13,11 +13,13 @@ function QuizzesDetails(){
     const dispatch = useDispatch();
     console.log('quizId:', quizId);
     const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
+    console.log('quiz:', quiz);
     const quizzes = useSelector((state: KanbasState) => state.quizzesReducer.quizzes);
     const quizList = quizzes.filter(
         (quiz) => quiz.course === courseId);
     //console.log('quizzes:', quizzes);
-    let currentQuiz = quizList.find((quiz) => quiz.quizId === quizId);
+    let currentQuiz = quizList.find((quiz) => quiz.id === quizId);
+    // set quiz to initial values if it is undefined (create new quiz)
     if (currentQuiz === undefined) {
         currentQuiz = quiz;
     }
@@ -90,7 +92,7 @@ function QuizzesDetails(){
       <hr/>
         <div className="col">
           <p><strong>Due:</strong> </p>
-          <p>{currentQuiz.due}</p>
+          <p>{currentQuiz.due.toString().split('T')[0]}</p>
         </div>
         <div className="col">
           <p><strong>For:</strong> </p>
@@ -98,11 +100,11 @@ function QuizzesDetails(){
         </div>
         <div className="col">
           <p><strong>Available from:</strong> </p>
-          <p>{currentQuiz.availableFrom}</p>
+          <p>{currentQuiz.availableFrom.toString().split('T')[0]}</p>
         </div>
         <div className="col">
           <p><strong>Until:</strong> </p>
-          <p>{currentQuiz.availableUntil}</p>
+          <p>{currentQuiz.availableUntil.toString().split('T')[0]}</p>
         </div>
       </div>
     </div>

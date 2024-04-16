@@ -13,7 +13,6 @@ import * as client from "./client";
 import {Course} from "./client"
 //const API_BASE = process.env.REACT_APP_API_BASE;
 
-
 function Kanbas() {
    const [courses, setCourses] = useState<Course[]>([]);
    //const COURSES_API = `${API_BASE}/api/courses`;
@@ -25,7 +24,7 @@ function Kanbas() {
   useEffect(() => {
     findAllCourses();
   }, []);
-
+  /*
    const [course, setCourse] = useState({
      courseId: "1234", name: "New Course", number: "New Number",
      startDate: "2023-09-10", endDate: "2023-12-15",
@@ -50,8 +49,7 @@ function Kanbas() {
          }
        })
      );
-   };
- 
+   };*/
  return(
    <Provider store={store}>
   <div className="d-flex">
@@ -71,16 +69,12 @@ function Kanbas() {
               updateCourse={updateCourse}*//>} />
          <Route path="Courses/:courseId/*" element={
             <Courses />} />
-         
       </Routes>
-
    </div>
-
   </div>
 </Provider>
 );
 }
-
 export default Kanbas
  
  

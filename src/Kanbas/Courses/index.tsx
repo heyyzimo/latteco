@@ -52,7 +52,6 @@ function Courses() {
       </span>
       <hr/><br/>
       <CourseNavigation />
-      
         <div>
             <div 
             className="overflow-y-scroll position-fixed bottom-0 end-0 m-3"
@@ -66,7 +65,7 @@ function Courses() {
                     <Route path="Assignments" element={<Assignments/>} />
                     <Route path="Assignments/:assignmentId" element={<AssignmentEditor/>}/>
                     <Route path="Quizzes" element={<Quizzes/>} />
-                    <Route path="Quizzes/:quizId" element={<QuizEditor/>}/>
+                    <Route path="Quizzes/:quizId/*" element={<QuizEditor/>}/>
                     <Route path="Quizzes/QuizzesDetails/:quizId" element={<QuizzesDetails/>}/>
                     <Route path="Quizzes/QuizPreview/:quizId" element={<QuizPreview/>}/>
                     <Route path="Grades" element={<Grades />} />

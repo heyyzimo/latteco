@@ -16,26 +16,25 @@ import * as client from "./client";
 import { KanbasState } from "../../store";
 function ModuleList() {
   const { courseId } = useParams();
+  const dispatch = useDispatch();
+  const modules = useSelector((state: KanbasState) => state.modulesReducer.modules);
+  const module = useSelector((state: KanbasState) => state.modulesReducer.module);
+  console.log('courseId:', courseId);
   const handleAddModule = () => {
-    client.createModule(courseId! , module).then((module) => {
-      dispatch(addModule({...module, course: courseId}));
-      
+    client.createModule(courseId!, module).then((module) => {
+      dispatch(addModule(module));
     });
   };
   const handleDeleteModule = (moduleId: string) => {
     client.deleteModule(moduleId).then((status) => {
       dispatch(deleteModule(moduleId));
     });
-  
   };
   const handleUpdateModule = async () => {
     const status = await client.updateModule(module);
     dispatch(updateModule(module));
   };
 
-  const modules = useSelector((state: KanbasState) => state.modulesReducer.modules);
-  const module = useSelector((state: KanbasState) => state.modulesReducer.module);
-  const dispatch = useDispatch();
   const [selectedModule, setSelectedModule] = useState(module); //set the first module as the default selected module
   useEffect(() => {
     client.findModulesForCourse(courseId )
@@ -44,10 +43,6 @@ function ModuleList() {
     );
   }, [courseId]);
 
-
- 
-
-  
   return (
     <>
       {/* <!-- Add buttons here --> */}      
@@ -106,7 +101,7 @@ function ModuleList() {
               <span className="ms-auto">
               <button
               className="btn btn-sm btn-danger wd-redbutton"
-              onClick={() => handleDeleteModule(module._id)}>
+              onClick={() => handleDeleteModule(module.id)}>
               Delete
               </button>
               <button
@@ -114,7 +109,6 @@ function ModuleList() {
               onClick={(event) => { dispatch(setModule(module)) }}>
               Edit
             </button>
-
                 <FaCheckCircle className="text-success" />
                 <FaPlusCircle className="ms-2" />
                 <FaEllipsisV className="ms-2" />
@@ -123,7 +117,7 @@ function ModuleList() {
               
             </div>
             <div className="row">
-            {selectedModule._id === module._id && (
+            {selectedModule.id === module.id && (
               <ul className="list-group ">
                 {module.lessons?.map((lesson : any, index : number) => (
                   <li className="list-group-item " key={index}>

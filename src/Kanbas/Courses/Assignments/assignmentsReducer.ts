@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 interface AssignmentType {
-    _id: string;
+    id: string;
     title: string;
     description: string;
     due: string;
@@ -31,9 +31,10 @@ const assignmentsSlice = createSlice({
         addAssignment: (state, action) => {
             const newAssignments = [
                 ...state.assignments,
-                {...action.payload, _id: new Date().getTime().toString()},
+                {...action.payload, id: new Date().getTime().toString()},
             ]
             state.assignments = newAssignments;
+            /*
             state.assignment = {
                 _id: '000',
                 title: 'New Assignment 123', 
@@ -43,22 +44,22 @@ const assignmentsSlice = createSlice({
                 availableUntil: new Date().toISOString().split('T')[0],
                 points: 100,
                 course: 'RS000',    
-            }
+            }*/
         },
         deleteAssignment: (state, action) => {
             state.assignments = state.assignments.filter(
-                (assignment) => assignment._id !== action.payload // expect the payload to be _id 
+                (assignment) => assignment.id !== action.payload // expect the payload to be _id 
             );
         },
         updateAssignment: (state, action) => {
             state.assignments = state.assignments.map((assignment) => {
-            if (assignment._id === action.payload._id) {
+            if (assignment.id === action.payload.id) {
                 return action.payload;
             } else {
                 return assignment;
             }
             });
-            
+            /*
             state.assignment = {
                 _id: '000',
                 title: 'New Assignment 123', 
@@ -68,7 +69,8 @@ const assignmentsSlice = createSlice({
                 availableUntil: new Date().toISOString().split('T')[0],
                 points: 100,
                 course: 'RS000',    
-            }        },
+            } */
+            },
         selectAssignment: (state, action) => {
             state.assignment = action.payload;
         },

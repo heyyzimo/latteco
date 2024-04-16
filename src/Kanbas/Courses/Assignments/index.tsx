@@ -9,15 +9,14 @@ import { deleteAssignment, setAssignments } from "./assignmentsReducer";
 import { useDispatch } from "react-redux";
 function Assignments() {
   const { courseId } = useParams();
+  console.log('courseId:', courseId);
   const dispatch = useDispatch();
   const assignments = useSelector((state: KanbasState) => state.assignmentsReducer.assignments);
   const assignment = useSelector((state: KanbasState) => state.assignmentsReducer.assignment);
-  const assignmentList = assignments.filter(
-    (assignment) => assignment.course === courseId);
   const handleDelete = (assignment: any) => { 
-    client.deleteAssignment(assignment._id).then((status) => {
-      dispatch(deleteAssignment(assignment._id));
-      console.log('Deleting assignment:', assignment, 'assignments after deleting:', assignmentList);
+    client.deleteAssignment(assignment.id).then((status) => {
+      dispatch(deleteAssignment(assignment.id));
+      console.log('Deleting assignment:', assignment, 'assignments after deleting:', assignments);
     })
   };
   useEffect(() => {
@@ -25,6 +24,7 @@ function Assignments() {
       .then((assignments) =>
         dispatch(setAssignments(assignments))
     );
+    console.log('assignments:', assignments);
   }, [courseId]);
 
   return (
@@ -58,7 +58,7 @@ function Assignments() {
                 </div>
             </div>
           <ul className="list-group">
-            {assignmentList.map((assignment, index) => (
+            {assignments && assignments.map((assignment, index) => (
                 
               <li key={index} className="list-group-item">
                 <div className="container">

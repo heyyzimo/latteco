@@ -21,7 +21,6 @@ function Courses() {
   //const COURSES_API = `http://localhost:4000/api/courses`;
   const COURSES_API = `${API_BASE}/api/courses`;
   const [course, setCourse] = useState<any>({ _id: courseId });
-  
   const findCourseById = async (courseId?: string) => {
     const response = await axios.get(
       `${COURSES_API}/${courseId}`
@@ -36,7 +35,6 @@ function Courses() {
     
   }, [courseId]);
 
-
   /*const course = courses.find((course) => course._id === courseId);
   const location = useLocation();
   // track current course navigation tab for breadcrumb
@@ -44,7 +42,6 @@ function Courses() {
     const currentTab = pathnames[pathnames.length - 1];
   */
 
-  
   return (
     <div>
       <span className="wd-breadcrumb" >

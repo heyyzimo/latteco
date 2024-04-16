@@ -15,19 +15,19 @@ function AssignmentEditor() {
   const assignments = useSelector((state: KanbasState) => state.assignmentsReducer.assignments);
   const assignment = useSelector((state: KanbasState) => state.assignmentsReducer.assignment);
   let currentAssignment = assignments.find(
-  (assignment) => assignment._id === assignmentId); // edit the assignment with chosen id.
+  (assignment) => assignment.id === assignmentId); // edit the assignment with chosen id.
   // useState to store the assignment details
   // less update of the global state
-  const [title, setTitle] = useState(currentAssignment?.title || "");
-  const [description, setDescription] = useState(currentAssignment?.description || "");
-  const [points, setPoints] = useState(currentAssignment?.points || "");
-  const [due, setDue] = useState(currentAssignment?.due || "");
-  const [availableFrom, setAvailableFrom] = useState(currentAssignment?.availableFrom || "");
-  const [availableUntil, setAvailableUntil] = useState(currentAssignment?.availableUntil || "");
+  const [title, setTitle] = useState(currentAssignment?.title || "New Assignment 123");
+  const [description, setDescription] = useState(currentAssignment?.description || "New Description");
+  const [points, setPoints] = useState(currentAssignment?.points || new Date().toISOString().split('T')[0]);
+  const [due, setDue] = useState(currentAssignment?.due || new Date().toISOString().split('T')[0]);
+  const [availableFrom, setAvailableFrom] = useState(currentAssignment?.availableFrom || new Date().toISOString().split('T')[0]);
+  const [availableUntil, setAvailableUntil] = useState(currentAssignment?.availableUntil || new Date().toISOString().split('T')[0]);
   
   if (currentAssignment === undefined) {
     currentAssignment = {
-        _id: '000',
+        id: '000',
         title: 'New Assignment 123', 
         description: 'New Description',
         due:new Date().toISOString().split('T')[0],
@@ -54,7 +54,7 @@ function AssignmentEditor() {
 
   const handleSave = async() => {
     // if currentAssignment is not undefined, then we are editing an existing assignment
-    const isEditing = currentAssignment._id !== '000';
+    const isEditing = currentAssignment.id !== '000';
     const updatedAssignment = {...currentAssignment, title, description, points, due, availableFrom, availableUntil};
     // edit existing assignment or add new assignment
     //dispatch(updateAssignment(assignment)),

@@ -22,3 +22,7 @@ export const findQuizzesForCourse = async (courseId : string) => {
     const response = await api.get(`${COURSES_API}/${courseId}/quizzes`);
     return response.data;
 };
+export const findQuizById = async (quizId : string) => {
+    const response = await api.get(`${QUIZZES_API}/${quizId}`);
+    return response.data;
+}

@@ -18,11 +18,12 @@ function QuizEditor(){
     const quizzes = useSelector((state: KanbasState) => state.quizzesReducer.quizzes);
     //set currentQuiz
     let currentQuiz = quizzes.find((quiz) => quiz.id === quizId);
+    console.log('1st currentQuiz.......:', currentQuiz);
     // impossible case but set quiz to initial values if it is undefined (create new quiz)
     if (currentQuiz === undefined) {
         currentQuiz = quiz;
     }
-    console.log('currentQuiz:', currentQuiz);
+    
     // fetch the quizzes for the course
     useEffect(() => {
         client.findQuizzesForCourse(courseId!)
@@ -30,8 +31,10 @@ function QuizEditor(){
                 dispatch(setQuizzes(quizzes))
         );
     }, [courseId]);
+    console.log('2nd currentQuiz:', currentQuiz);
     return (
         <>
+        
         <div className="wd-assignment-buttons d-flex" >
 
         <div className="ms-auto">
@@ -42,7 +45,7 @@ function QuizEditor(){
             </span>
             <span className="me-2">
             {
-                currentQuiz.published ? <FaCheckCircle style={{color:'white'}}/> : <FaBan style={{color:'grey'}}/>
+                currentQuiz.published ? <FaCheckCircle className="me-1" style={{color:'green'}}/> : <FaBan className="me-1" style={{color:'grey'}}/>
             }    
             {
                 currentQuiz.published ? 'Published' : 'Not Published'
@@ -70,8 +73,8 @@ function QuizEditor(){
 
         <Routes>
             <Route path="/" element = {<Navigate to="details"/>}/>
-            <Route path="details" element={<QuizDetails currentQuiz = {currentQuiz} />} />
-            <Route path='questions' element={<QuizQuestions currentQuiz = {currentQuiz} />} />
+            <Route path="details" element={<QuizDetails  />} />
+            <Route path='questions' element={<QuizQuestions  />} />
         </Routes>
         </>
 

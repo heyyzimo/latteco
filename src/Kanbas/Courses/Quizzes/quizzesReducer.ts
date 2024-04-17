@@ -11,9 +11,11 @@ interface QuizType {
     quizType: string; // Graded Quiz (default), Practice Quiz, Graded Survey, Ungraded Survey
     assignmentGroup: string; //Quizzes (default), Exams, Assignments, Project
     shuffleAnswers: boolean; // true (default), false
+    hasTimeLimit: boolean; // false (default), true
     timeLimit: number; // 20 min(default)
     multipleAttempts: boolean; // false (default), true
     showCorrectAnswers: boolean; // false (default), true. If true, set when correct answers are shown to students.
+    showCorrectAnswersInHours: number;
     accessCode: string; // Default: blank. If set, students must enter the access code to take the quiz.
     oneQuestionAtATime: boolean; // true(default)
     webCamRequired: boolean; // false(default)
@@ -34,9 +36,11 @@ const initialState = {
         quizType: 'Graded Quiz',
         assignmentGroup: 'Quizzes',
         shuffleAnswers: true,
+        hasTimeLimit: false,
         timeLimit: 20,
         multipleAttempts: false,
         showCorrectAnswers: false,
+        showCorrectAnswersInHours: 0,
         accessCode: '',
         oneQuestionAtATime: true,
         webCamRequired: false,
@@ -55,6 +59,7 @@ const quizzesSlice = createSlice({
                 {...action.payload, id: new Date().getTime().toString()},
             ];
             state.quizzes = newQuizzes;
+            /*
             state.quiz = {
                 id: '000',
                 title: 'New Quiz 123',
@@ -66,15 +71,17 @@ const quizzesSlice = createSlice({
                 quizType: 'Graded Quiz',
                 assignmentGroup: 'Quizzes',
                 shuffleAnswers: true,
+                hasTimeLimit: false,
                 timeLimit: 20,
                 multipleAttempts: false,
                 showCorrectAnswers: false,
+                showCorrectAnswersInHours: 0, 
                 accessCode: '',
                 oneQuestionAtATime: true,
                 webCamRequired: false,
                 lockquestionsAfterAnswered: false,
                 published: false,
-            };
+            };*/
         },
         deleteQuiz: (state, action) => {
             state.quizzes = state.quizzes.filter(
@@ -90,6 +97,7 @@ const quizzesSlice = createSlice({
                 }
             });
             state.quizzes = newQuizzes;
+            /*
             state.quiz = {
                 id: '000',
                 title: 'New Quiz 123',
@@ -101,15 +109,17 @@ const quizzesSlice = createSlice({
                 quizType: 'Graded Quiz',
                 assignmentGroup: 'Quizzes',
                 shuffleAnswers: true,
+                hasTimeLimit: false,
                 timeLimit: 20,
                 multipleAttempts: false,
                 showCorrectAnswers: false,
+                showCorrectAnswersInHours: 0,
                 accessCode: '',
                 oneQuestionAtATime: true,
                 webCamRequired: false,
                 lockquestionsAfterAnswered: false,
                 published: false,
-            };
+            };*/
         },
         setQuiz: (state, action) => {
             state.quiz = action.payload;

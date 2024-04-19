@@ -100,9 +100,7 @@ export default function QuizDetails(
     console.log('quiz:', quiz);
     // console.log('title:', currentQuiz.title);
     return (
-        
         <div className="container mt-3">
-            <h1>Quiz Details</h1>
             <form>
                 <div>
                     <input type="text" style={{width: `50%`}}className="form-control" id="quiz-name" defaultValue={title}

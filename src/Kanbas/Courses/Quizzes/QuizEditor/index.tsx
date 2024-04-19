@@ -73,8 +73,8 @@ function QuizEditor(){
 
         <Routes>
             <Route path="/" element = {<Navigate to="details"/>}/>
-            <Route path="details" element={<QuizDetails  />} />
-            <Route path='questions' element={<QuizQuestions  />} />
+            <Route path="details" element={<QuizDetails />} />
+            <Route path='questions' element={<QuizQuestions />} />
         </Routes>
         </>
 

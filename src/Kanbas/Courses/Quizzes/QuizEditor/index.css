@@ -1,0 +1,6 @@
+.text-muted-question {
+    font-size: 1rem; /* Smaller text */
+    font-weight: normal; /* Not bold */
+    color: #0d0f11; /* Muted text color - bootstrap style */
+  }
+  
